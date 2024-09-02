@@ -72,6 +72,15 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A4EEE4A7D8114B70B990F44048BBF0B3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CC6F86BE210A490C9A0E19B23CFE6057 }}
 
+      - name: Add Run from Package Settings 
+        uses: azure/appservice-settings@v1
+        id: settings
+        with:
+          app-name: 'ly-python-func-v1'
+          slot-name: 'Production'
+          mask-inputs: false
+          app-settings-json: '[{ "name": "WEBSITE_RUN_FROM_PACKAGE", "value": "1", "slotSetting": false }]'
+            
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
         id: deploy-to-function
