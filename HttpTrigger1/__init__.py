@@ -1,4 +1,5 @@
 import logging
+import pandas as pd
 
 import azure.functions as func
 
