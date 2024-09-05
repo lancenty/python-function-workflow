@@ -87,13 +87,12 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0F166C8539FB44A2893A3A939D0BF6EA }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A4EEE4A7D8114B70B990F44048BBF0B3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CC6F86BE210A490C9A0E19B23CFE6057 }}
+          #creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       - name: Azure CLI script
         uses: azure/cli@v2
         with:
           azcliversion: latest
           inlineScript: |
-                az account show
-                az storage -h
                 az webapp config access-restriction add -g ${{ env.RESOURCE_GROUP }} -n ${{ env.FUNCTION_APP_NAME}} --rule-name "github deploy" --action Allow --ip-address ${{ steps.ip.outputs.ipv4 }}/27 --priority 200
         
