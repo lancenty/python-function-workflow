@@ -95,5 +95,5 @@ jobs:
           inlineScript: |
                 az account show
                 az storage -h
-                az webapp config access-restriction add -g ${{ env.RESOURCE_GROUP }} -n ${{ env.FUNCTION_APP_NAME}} --rule-name github deploy --action Allow --ip-address ${{ steps.ip.outputs.ipv4 }}/27 --priority 200
+                az webapp config access-restriction add -g ${{ env.RESOURCE_GROUP }} -n ${{ env.FUNCTION_APP_NAME}} --rule-name "github deploy" --action Allow --ip-address ${{ steps.ip.outputs.ipv4 }}/27 --priority 200
         
